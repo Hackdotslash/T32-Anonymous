@@ -94,7 +94,7 @@ function connectButtonHandler(event) {
             shareScreen.disabled = false;
             capture.disabled = false;
         }).catch(() => {
-            alert('Connection failed. Is the backend running?');
+            alert('Connection failed due to internal issues. Is the backend running?');
             button.innerHTML = 'Join call';
             button.disabled = false;
         });
