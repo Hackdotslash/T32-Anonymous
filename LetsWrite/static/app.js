@@ -26,6 +26,57 @@ function addLocalVideo() {
     });
 };
 
+
+
+
+function capture1() {
+    var canvas = document.getElementById('canvas');
+    var video = document.getElementById('video');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);  
+    var img1 = canvas.toDataURL();
+    $.ajax({
+                url: '/process1',
+                data: {
+                    imageBase64 : img1                    
+                },
+                type: 'POST',
+                success: function(data){
+                    // $("#result").text("Predicted Output : "+data);
+                    // canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight); 
+                    console.log("success!!")
+                    // console.log(data)
+                    conv.sendMessage(data);
+                } 
+            })
+
+    // conv.sendMessage("https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg");
+};
+
+
+function assignMentor(event){
+    connectButtonHandler(event);
+    mentor = usernameInput.value;
+    console.log(mentor);
+    // Disable Mentor Button
+    document.getElementById('join_leave_mentor').style.display = "none";
+    document.getElementById('Turn').style.display = "none";
+    now_streaming = mentor;
+    
+}
+
+function assignStudent(event){
+    connectButtonHandler(event);
+    document.getElementById('join_leave_mentor').style.display = "none";
+    document.getElementById('Turn').style.display = "block";
+    document.getElementById('Allow').style.display = "none";
+    document.getElementById('cls').style.display = "none";
+    document.getElementById('turn_over').style.display = "none";
+}
+
+
+
 function connectButtonHandler(event) {
     event.preventDefault();
     if (!connected) {
@@ -254,6 +305,14 @@ function toggleChatHandler() {
     }
 };
 
+
+
+function onChatInputKey(ev) {
+    if (ev.keyCode == 13) {
+        conv.sendMessage(chatInput.value);
+        chatInput.value = '';
+    }
+};
 
 addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
