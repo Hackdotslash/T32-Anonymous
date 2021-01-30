@@ -43,15 +43,10 @@ function capture1() {
                 },
                 type: 'POST',
                 success: function(data){
-                    // $("#result").text("Predicted Output : "+data);
-                    // canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight); 
                     console.log("success!!")
-                    // console.log(data)
                     conv.sendMessage(data);
                 } 
             })
-
-    // conv.sendMessage("https://i.pinimg.com/originals/83/f9/37/83f937b69f30bb886ab8a03390da6771.jpg");
 };
 
 
@@ -318,3 +313,4 @@ addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
 shareScreen.addEventListener('click', shareScreenHandler);
 toggleChat.addEventListener('click', toggleChatHandler);
+chatInput.addEventListener('keyup', onChatInputKey);

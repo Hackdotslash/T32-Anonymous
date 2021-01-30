@@ -53,5 +53,30 @@ def token():
     return token.to_jwt()
 
 
+@app.route("/process1",methods=['GET','POST'])
+def process1():
+    global api_counter
+    image_b64=request.values[('imageBase64')]
+    print()
+    print()
+    print("Testing Image")
+    print()
+    print()
+
+    ans=''
+    with open("output4.png", "rb") as file:
+        url = "https://api.imgbb.com/1/upload"
+        payload = {
+            "key": 'f458d32e54f5653de50e29f07a931015',
+            "image": base64.b64encode(file.read()),
+        }
+        res = requests.post(url, payload)
+        print(res.json())
+        ans=res.json()['data']['url']
+
+    print(ans)
+    return ans
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
