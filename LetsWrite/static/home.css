@@ -109,7 +109,7 @@ video {
 /* chat section */
 
 #root.withChat #chat {
-    width: calc(100% - 10px);
+    width: auto;
     display: grid;
     grid-template-rows: auto 30px;
     border-left: 1px solid black;
@@ -122,6 +122,7 @@ video {
 
 #chat #chat-scroll {
     overflow: auto;
+    
 }
 
 #chat #chat-content {
@@ -214,8 +215,8 @@ button:hover {
 
     #turn_over {
         display: none;
-        top: 95%;
-        right: 723px;
+        top: 72%;
+        right: 37%;
         position: absolute;
     }
 
@@ -243,8 +244,8 @@ button:hover {
 
     #turn_over {
         display: none;
-        top: 67%;
-        right: 723px;
+        top: 72%;
+        right: 37%;
         position: absolute;
     }
 

@@ -83,7 +83,7 @@
                   width:200px;
                   height:30px;
                   font-size:20px;
-                  background-color: rgb(202,233,246,0.7);
+                  background-color:rgba(202,233,246,0.0) !important;
                   color:white;
                   
     }
@@ -95,12 +95,18 @@
     margin-top: 46px;
     }
     .btnaskdoubt{
-        background-color: rgba(22, 150, 35, 0.5);height: 50px;border-radius:80px ;color:white;margin-top: 20px;line-height:1
+        margin:10px;
+        background-color: rgba(22, 150, 35, 0.5);height: 68px;border-radius:114px ;color:white;margin-top: 20px;
+        width: 71px;
+              line-height:1;
+              
+
     }
     .canvasstyle{
         position: absolute;left: auto; height: 0px
     }
     .btncapture{
+        margin:10px;
         background-color: rgba(235, 13, 13, 0.8);height: 68px;border-radius:114px ;color:white;margin-top: 20px;
         width: 71px;
               line-height:1
@@ -111,53 +117,192 @@
               line-height:1
     }
     .chatstyle{
-        border:1px solid black;height: 500px;width: 300px;border-radius: 40px;border:0px;position: absolute;left: 73%; top: 30%
+        transition: 2s ease-in-out;
+        border:0px !important;height: auto !important;border-radius: 40px;position: absolute;left: 37% !important; top: 85% !important;width: auto !important;z-index: 2 !important;
     }
     .chatscrolls{
-        margin-bottom: 0px;margin-left: 0px;height: 400px;width: 300px;border: 1px solid black; background-color: rgb(202, 217, 214);border-radius: 10px;padding: 5px;
+        margin-bottom: 0px;margin-left: 0px;height: 210px;width: 389px;border: 1px solid black; background-color: #bbeaff;border-radius: 30px;padding: 5px;z-index: 2;;
     }
     .chatin{
-        margin:auto;text-align: center;height: 20px;border:0px
+        margin:auto;text-align: center;height: 22px;border:0px;z-index: 3;
     }
     .chatinput{
         margin-bottom: 10px;width:300px;border-radius: 20px;border:0px ;margin-top:-41px;
     }
     .btnallow{
-        background-color: rgba(22, 150, 35, 0.8);height: 50px;border-radius:80px ;color:white;margin-top: 20px;line-height:1
-    }
+        background-color: rgba(37, 189, 52, 0.8);
+    height: 64px;
+    width: 68px;
+    border-radius: 78px;
+    color: white;
+    margin-top: -28px;
+    line-height: 1;
+    z-index: 989;
+    margin-left: 120px;    }
     .btnturnover{
         text-align:center; justify-content: center;width: 100%;display: inline-flex;
     }
     .turnoverbtn {
     margin-top: 10px;
     line-height: 2;
-    border-radius: 114px;
-    width: 71px;
-    height: 68px;
+    height: 64px;
+    width: 68px;
+    border-radius: 78px;
     background-color: rgba(245, 121, 6, 0.9) !important;
     
 }
-    .tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
+ 
 
-.tooltip .tooltiptext {
+.btncapture .tooltiptext {
   visibility: hidden;
   width: 120px;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 3px 0;
+  border:0px;
 
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
 
-.tooltip:hover .tooltiptext {
+.btncapture:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+.btnclearscreen .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.btnclearscreen:hover .tooltiptext {
+  visibility: visible;
+}
+
+.btnturnover .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.btnturnover:hover .tooltiptext {
+  visibility: visible;
+}
+.btnaskdoubt .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.btnaskdoubt:hover .tooltiptext {
+  visibility: visible;
+}
+.btnsharescreen .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.btnsharescreen:hover .tooltiptext {
+  visibility: visible;
+}
+.btntogglechat .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+#video{
+    border-radius: 24px;
+}
+
+.btntogglechat:hover .tooltiptext {
+  visibility: visible;
+}
+.btnleave .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.btnleave:hover .tooltiptext {
+  visibility: visible;
+}
+
+.btnallow .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  border:0px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.btnallow:hover .tooltiptext {
   visibility: visible;
 }
 </style>
@@ -167,7 +312,7 @@
         <div style="height: 20px;">
         </div>
         <div class="head titlefor">
-            <h1 class="headingfor">Let's Write</h1>
+            <h1 class="headingfor">OnBoard</h1>
         </div>
         <form class="formstyle formfor">
             <div id="name" class="namefield">
@@ -212,9 +357,23 @@
             <span>Switch camera</span>
         </button>
         <div id="somemorebtns" class="btngr">
-            <button id="share_screen" class="btnsharescreen" disabled>Share screen</button>
-            <button id="toggle_chat" class="btntogglechat" disabled>Toggle Chat</button>
-            <a href="/"><button id="Leave_call" class="btnleave">Leave Call</button></a>
+            <button id="share_screen" class="btnsharescreen" disabled>
+
+                <i class="fa fa-2x fa-desktop"> </i>
+
+                <span class="tooltiptext">Share Screen</span>
+            </button>
+            <button id="toggle_chat" class="btntogglechat" disabled>
+                
+                <i class="fa fa-2x fa-comment" style="color: white;"> </i>
+
+                <span class="tooltiptext">Toggle Chat</span>
+            </button>
+            <a href="/"><button id="Leave_call" class="btnleave">
+                <i class="fa fa-2x fa-phone" style="color: white;"> </i>
+
+                <span class="tooltiptext">Leave Call</span>
+            </button></a>
         </div>
         <div class="cameradiv" id="cameraop">
 
@@ -243,9 +402,26 @@
             </div>
             <canvas disabled id="canvas" class="canvasstyle"></canvas>
             <div id="somebuttons">
-                <button class="btnaskdoubt" id="Turn">Ask Doubt</button>
-                <button class="btncapture" id="capture" disabled onclick="capture1()"><i class="fa fa-2x fa-camera"></i></button>
-                <button class="btnclearscreen" id="cls"><i class="fa fa-2x fa-hand-rock"></i></button>
+                <button class="btnaskdoubt" id="Turn">
+
+                    <i class="fa fa-2x fa-question-circle" style="color:white;"> </i>
+
+                    <span class="tooltiptext">Ask Doubt</span>
+                </button>
+                <button class="btncapture" id="capture" disabled onclick="capture1()">
+                  
+                       
+                        <i class="fa fa-2x fa-camera"> </i>
+
+                            <span class="tooltiptext">Capture Screenshot</span>
+
+                       
+                
+                </button>
+                <button class="btnclearscreen" id="cls">
+                    <i class="fa fa-2x fa-hand-rock"></i>
+                    <span class="tooltiptext">Clear Screen</span>
+                </button>
             </div>
             <div id="chat" class="chatstyle">
                 <div id="chat-scroll" class="chatscrolls">
@@ -256,13 +432,26 @@
                 <div class="chatin">
                     <input id="chat-input" placeholder="Type Your Query" class="chatinput" type="text">
                 </div>
-                <div>
-                    <button id="Allow" class="allowbtn btnallow">Allow</button>
+                <div style="display: inline-flex;">
+
+                    <div>
+                        <button id="Allow" class="allowbtn btnallow">
+                            <i class="fa fa-2x fa-hand-pointer" style="color: white;"> </i>
+    
+                            <span class="tooltiptext">Allow</span>
+                        </button>
+                    </div>
+                    <div class="btnturnover">
+                        <button id="turn_over" class="turnoverbtn" style="top: 72%;
+                        right: 33%;">
+                            <i class="fa fa-2x fa-retweet" style="color:white"></i>
+                            <span class="tooltiptext">Turn Over</span>
+        
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="btnturnover">
-                <button id="turn_over" class="turnoverbtn"><i class="fa fa-2x fa-dot-circle" style="color:white"></i></button>
-            </div>
+           
         </div>
     </div>
     <script>
