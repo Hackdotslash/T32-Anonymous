@@ -342,45 +342,45 @@ function shareScreenHandler() {
     }
 };
 
-function zoomTrack(trackElement) {
+// function zoomTrack(trackElement) {
 
 
 
-    if (!trackElement.classList.contains('trackZoomed')) {
-        // zoom in
-        container.childNodes.forEach(participant => {
-            if (participant.classList && participant.classList.contains('participant')) {
-                let zoomed = false;
-                participant.childNodes[0].childNodes.forEach(track => {
-                    if (track === trackElement) {
-                        track.classList.add('trackZoomed')
-                        zoomed = true;
-                    }
-                });
-                if (zoomed) {
-                    participant.classList.add('participantZoomed');
-                }
-                else {
-                    participant.classList.add('participantHidden');
-                }
-            }
-        });
-    }
-    else {
-        // zoom out
-        container.childNodes.forEach(participant => {
-            if (participant.classList && participant.classList.contains('participant')) {
-                participant.childNodes[0].childNodes.forEach(track => {
-                    if (track === trackElement) {
-                        track.classList.remove('trackZoomed');
-                    }
-                });
-                participant.classList.remove('participantZoomed')
-                participant.classList.remove('participantHidden')
-            }
-        });
-    }
-};
+//     if (!trackElement.classList.contains('trackZoomed')) {
+//         // zoom in
+//         container.childNodes.forEach(participant => {
+//             if (participant.classList && participant.classList.contains('participant')) {
+//                 let zoomed = false;
+//                 participant.childNodes[0].childNodes.forEach(track => {
+//                     if (track === trackElement) {
+//                         track.classList.add('trackZoomed')
+//                         zoomed = true;
+//                     }
+//                 });
+//                 if (zoomed) {
+//                     participant.classList.add('participantZoomed');
+//                 }
+//                 else {
+//                     participant.classList.add('participantHidden');
+//                 }
+//             }
+//         });
+//     }
+//     else {
+//         // zoom out
+//         container.childNodes.forEach(participant => {
+//             if (participant.classList && participant.classList.contains('participant')) {
+//                 participant.childNodes[0].childNodes.forEach(track => {
+//                     if (track === trackElement) {
+//                         track.classList.remove('trackZoomed');
+//                     }
+//                 });
+//                 participant.classList.remove('participantZoomed')
+//                 participant.classList.remove('participantHidden')
+//             }
+//         });
+//     }
+// };
 
 function connectChat(token, conversationSid) {
     return Twilio.Conversations.Client.create(token).then(_chat => {

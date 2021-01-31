@@ -27,7 +27,6 @@ import traceback
 import urllib
 
 import json
-import pyaudio
 from rev_ai.models import MediaConfig
 from rev_ai.streamingclient import RevAiStreamingClient
 from six.moves import queue
@@ -58,14 +57,15 @@ twilio_client = Client(twilio_api_key_sid, twilio_api_key_secret,
 def processImage():
     # Load in the image using the typical imread function using our watch_folder path, and the fileName passed in, then set the final output image to our current image for now
     image = cv2.imread("./output.png")
-    print(image)
     output = image
 
-    hMin = 29  # Hue minimum
-    sMin = 30  # Saturation minimum
-    vMin = 0   # Value minimum (Also referred to as brightness)
-    hMax = 179 # Hue maximum
+    hMin = 2  # Hue minimum
+    hMax = 255 # Hue maximum
+
+    sMin = 50  # Saturation minimum
     sMax = 255 # Saturation maximum
+
+    vMin = 0  # Value minimum (Also referred to as brightness)
     vMax = 255 # Value maximum
     # Set the minimum and max HSV values to display in the output image using numpys' array function. We need the numpy array since OpenCVs' inRange function will use those.
     lower = np.array([hMin, sMin, vMin])
@@ -82,6 +82,13 @@ def processImage():
     # Resize the image to 512, 512 (This can be put into a variable for more flexibility), and update the output image variable.
     dim = (512, 512)
     output = cv2.resize(output, dim)
+
+    for i in range(output.shape[2]):
+      for j in range(output.shape[0]):
+          for k in range(output.shape[1]):
+              if (output[j][k][i] >0):
+                  output[j][k][i] = 255
+
     cv2.imwrite("./processed.png",output)
 
 
@@ -95,115 +102,13 @@ def get_chatroom(name):
         friendly_name=name)
 
 
-rate = 44100
-chunk = int(rate/10)
-
-# Insert your access token here
-access_token = "02VN45AJL29kSetOgcKSu4ITi_VveOV32tYaGYuTcgdNVfLZcgef5lanKGOI75BFsLXj6d6Qb9UDKWgPJNwamNFoO45Ws"
-
-
-thread = Thread()
-
-# Creates a media config with the settings set for a raw microphone input
-example_mc = MediaConfig('audio/x-raw', 'interleaved', 44100, 'S16LE', 1)
-
-streamclient = RevAiStreamingClient(access_token, example_mc)
-
-class MicrophoneStream(object):
-    """Opens a recording stream as a generator yielding the audio chunks."""
-    def __init__(self, rate, chunk):
-        self._rate = rate
-        self._chunk = chunk
-        # Create a thread-safe buffer of audio data
-        self._buff = queue.Queue()
-        self.closed = True
-
-    def __enter__(self):
-        self._audio_interface = pyaudio.PyAudio()
-        self._audio_stream = self._audio_interface.open(
-            format=pyaudio.paInt16,
-            # The API currently only supports 1-channel (mono) audio
-            channels=1, rate=self._rate,
-            input=True, frames_per_buffer=self._chunk,
-            # Run the audio stream asynchronously to fill the buffer object.
-            # This is necessary so that the input device's buffer doesn't
-            # overflow while the calling thread makes network requests, etc.
-            stream_callback=self._fill_buffer,
-        )
-
-        self.closed = False
-
-        return self
-
-    def __exit__(self, type, value, traceback):
-        self._audio_stream.stop_stream()
-        self._audio_stream.close()
-        self.closed = True
-        # Signal the generator to terminate so that the client's
-        # streaming_recognize method will not block the process termination.
-        self._buff.put(None)
-        self._audio_interface.terminate()
-
-    def _fill_buffer(self, in_data, frame_count, time_info, status_flags):
-        """Continuously collect data from the audio stream, into the buffer."""
-        self._buff.put(in_data)
-        return None, pyaudio.paContinue
-
-    def generator(self):
-        while not self.closed:
-            # Use a blocking get() to ensure there's at least one chunk of
-            # data, and stop iteration if the chunk is None, indicating the
-            # end of the audio stream.
-            chunk = self._buff.get()
-            if chunk is None:
-                return
-            data = [chunk]
-
-            # Now consume whatever other data's still buffered.
-            while True:
-                try:
-                    chunk = self._buff.get(block=False)
-                    if chunk is None:
-                        return
-                    data.append(chunk)
-                except queue.Empty:
-                    break
-
-            yield b''.join(data)
-
-
-
-def get_Text():
-    with MicrophoneStream(rate, chunk) as stream:
-        # Uses try method to allow users to manually close the stream
-        try:
-            # Starts the server connection and thread sending microphone audio
-            response_gen = streamclient.start(stream.generator())
-
-            # Iterates through responses and prints them
-            for response in response_gen:
-                y = json.loads(response)
-                v = []
-                for i in y["elements"]:
-                    v.append(i["value"])
-                
-                socketio.emit('newnumber', {'value': ' '.join(v)}, namespace='/test')
-                print("successfully emitted")
-                sleep(1)
-                 
-        except KeyboardInterrupt:
-            # Ends the websocket connection.
-            streamclient.client.send("EOS")
-            pass
-
-
 @app.route('/')
 def index():
     return render_template('main.html')
 
 @app.route('/home')
 def home():
-    return render_template('index1.html')
+    return render_template('home.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -241,12 +146,6 @@ def token():
     return token.to_jwt()
 
 
-@socketio.on('connect', namespace='/test')
-def test_connect():
-    global thread
-    print('Client connected')
-    thread = socketio.start_background_task(target=get_Text)
-
 @app.route("/process1",methods=['GET','POST'])
 def process1():
     image_b64=request.values[('imageBase64')]
@@ -269,9 +168,7 @@ def process1():
             "image": base64.b64encode(file.read()),
         }
         res = requests.post(url, payload)
-        print(res.json())
         ans=res.json()['data']['url']
-
     print(ans)
     return ans 
 

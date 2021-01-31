@@ -122,7 +122,10 @@ video {
 
 #chat #chat-scroll {
     overflow: auto;
-    
+}
+
+#chat #chat-scroll ::-webkit-scrollbar {
+    display: none;
 }
 
 #chat #chat-content {
@@ -133,12 +136,12 @@ video {
 }
 
 .myImg {
-    width: 400px;
+    width: 300px;
     height: 308px;
     position: absolute;
     margin: auto;
     opacity: 0.5;
-    left: 0%;
+    left: 16%;
 }
 
 .join:hover {
@@ -196,9 +199,9 @@ button:hover {
     outline: none;
 }
 
+ 
 
 #imageDiv {
-    position: relative;
     top: -112%;
 }
 
@@ -220,6 +223,40 @@ button:hover {
         position: absolute;
     }
 
+    .btnallow{
+        background-color: rgba(37, 189, 52, 0.8);
+    height: 64px;
+    width: 68px;
+    border-radius: 78px;
+    color: white;
+    margin-top: -28px;
+    line-height: 1;
+    z-index: 989;
+    margin-left: 120px;    }
+
+    .btnallow{
+        background-color: rgba(37, 189, 52, 0.8);
+    height: 64px;
+    width: 68px;
+    border-radius: 78px;
+    color: white;
+    margin-top: -28px;
+    line-height: 1;
+    z-index: 989;
+    margin-left: 120px;    }
+    .btnturnover{
+        text-align:center; justify-content: center;width: 100%;display: inline-flex;
+    }
+    .turnoverbtn {
+    margin-top: 10px;
+    line-height: 2;
+    height: 64px;
+    width: 68px;
+    border-radius: 78px;
+    background-color: rgba(245, 121, 6, 0.9) !important;
+    
+    }
+
 @media only screen and (max-width: 1000px) {
     #imageDiv {
         width: 400px;
@@ -238,15 +275,55 @@ button:hover {
         width: 100%;
         justify-content: center;
         position: absolute;
-        top: 61%;
-        right: 0%;
+        top: 94% !important;
+        right: -12% !important;
     }
 
     #turn_over {
         display: none;
-        top: 72%;
-        right: 37%;
+        top: 394% !important;
+        right: 70% !important;
         position: absolute;
     }
+    .btnallow{
+        background-color: rgba(37, 189, 52, 0.8);
+    height: 64px;
+    width: 68px;
+    border-radius: 78px;
+    color: white;
+    margin-top: 229px;
+    line-height: 1;
+    z-index: 989;
+    margin-left: 120px;    }
+   
+}
 
+
+   .chatscrolls{
+        margin-bottom: 0px;margin-left: 0px;height: 210px;width: 389px;border: 1px solid black; background-color: #bbeaff;border-radius: 30px;padding: 5px;z-index: 2;;
+    }
+@media only screen and (max-width: 1000px) {
+    .chatscrolls{
+        transition: 2s ease-in-out;
+        border: 0px !important;
+        height: 210px;
+        border-radius: 40px;
+        position: absolute;
+        left: -31% !important;
+        top: 64% !important;
+        width: 389px;
+        z-index: 2 !important;
+    
+    }
+
+    .chatinput{
+        margin-bottom: 10px;
+        width: 300px;
+        border-radius: 20px;
+        border: 0px;
+        margin-top: 224px !important;
+        margin-left: -43px !important ;
+    }
+
+    
 }

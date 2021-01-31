@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
@@ -120,38 +120,15 @@
         transition: 2s ease-in-out;
         border:0px !important;height: auto !important;border-radius: 40px;position: absolute;left: 37% !important; top: 85% !important;width: auto !important;z-index: 2 !important;
     }
-    .chatscrolls{
-        margin-bottom: 0px;margin-left: 0px;height: 210px;width: 389px;border: 1px solid black; background-color: #bbeaff;border-radius: 30px;padding: 5px;z-index: 2;;
-    }
+ 
     .chatin{
         margin:auto;text-align: center;height: 22px;border:0px;z-index: 3;
     }
     .chatinput{
         margin-bottom: 10px;width:300px;border-radius: 20px;border:0px ;margin-top:-41px;
     }
-    .btnallow{
-        background-color: rgba(37, 189, 52, 0.8);
-    height: 64px;
-    width: 68px;
-    border-radius: 78px;
-    color: white;
-    margin-top: -28px;
-    line-height: 1;
-    z-index: 989;
-    margin-left: 120px;    }
-    .btnturnover{
-        text-align:center; justify-content: center;width: 100%;display: inline-flex;
-    }
-    .turnoverbtn {
-    margin-top: 10px;
-    line-height: 2;
-    height: 64px;
-    width: 68px;
-    border-radius: 78px;
-    background-color: rgba(245, 121, 6, 0.9) !important;
     
-}
- 
+
 
 .btncapture .tooltiptext {
   visibility: hidden;
@@ -312,7 +289,7 @@
         <div style="height: 20px;">
         </div>
         <div class="head titlefor">
-            <h1 class="headingfor">OnBoard</h1>
+            <h1 class="headingfor">Let's Write</h1>
         </div>
         <form class="formstyle formfor">
             <div id="name" class="namefield">
@@ -336,8 +313,6 @@
                 <p id="count" style="padding: 3px;color:white">Disconnected</p>
             </div>
             <div style="margin-bottom: 30px; color:white">
-                <!-- <button style="width:100px;height: 30px;color:white;background-color: rgb(202,233,246,0.4);border-radius: 20px;border:1px" id="join_leave_student">Join as a Student</button>
-              <button style="width:100px;height: 30px;color:white;background-color: rgb(202,233,246,0.4);border-radius: 20px;border:1px" id="join_leave_mentor">Join as a Mentor</button> -->
                 <div id="panel" class="join joinfield">
                     <div class="asfield">
                         Join As
@@ -424,7 +399,7 @@
                 </button>
             </div>
             <div id="chat" class="chatstyle">
-                <div id="chat-scroll" class="chatscrolls">
+                <div class="chatscrolls" id="chat-scroll" >
                     <div id="chat-content">
                         <!-- chat content will be added dynamically here -->
                     </div>
