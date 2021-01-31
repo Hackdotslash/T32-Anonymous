@@ -301,13 +301,111 @@ function toggleChatHandler() {
 };
 
 
-
 function onChatInputKey(ev) {
     if (ev.keyCode == 13) {
         conv.sendMessage(chatInput.value);
         chatInput.value = '';
     }
 };
+
+document.getElementById("Turn").onclick = function() {
+    conv.sendMessage("accept " + usernameInput.value);
+}
+
+document.getElementById("Allow").onclick = function() {
+    if(mentor == usernameInput.value){
+        conv.sendMessage("Access Allowed to "+recent_message);
+    }
+}
+
+document.getElementById("turn_over").onclick = function() {
+    conv.sendMessage("Access Granted to "+mentor);
+}
+
+document.getElementById("cls").onclick = function() {
+    conv.sendMessage("clear screen");
+    images.innerHTML = "";
+}
+
+function parseURL(author, message) {
+    if(message.startsWith("https")){
+        // document.getElementById("myImg").src = message;
+
+        let image = document.createElement('img');
+
+        image.setAttribute('class','myImg');
+
+        image.setAttribute('src',message);
+
+        images.appendChild(image);
+
+        return 1;
+
+    }
+    else if(message.startsWith("accept")){
+
+        recent_message = author;
+    
+    }
+    else if(message.startsWith("Access Granted ")== true && author == mentor){
+        var now_id = dict[now_streaming];
+        var want_id = dict[author];
+        
+        if(now_id==undefined){
+            now_id = "local";
+        }
+        if(want_id == undefined){
+            want_id = "local";
+        }
+
+        console.log(now_id);
+        console.log(want_id);
+
+        if(now_id != want_id){
+            document.getElementById(now_id).setAttribute('class','participantHidden');
+            document.getElementById(want_id).setAttribute('class','participant');
+        }
+        now_streaming = author;
+    }
+
+    else if(message.startsWith("Access Allowed") == true && author == mentor){
+        
+        var now_id = dict[now_streaming];
+        var want_id = dict[recent_message];
+        
+        if(now_id==undefined){
+            now_id = "local";
+        }
+        if(want_id == undefined){
+            want_id = "local";
+        }
+
+        console.log(now_id);
+        console.log(want_id);
+
+        if(now_id != want_id){
+            document.getElementById(now_id).setAttribute('class','participantHidden');
+            document.getElementById(want_id).setAttribute('class','participant');
+        }
+        now_streaming = recent_message;
+
+    }
+    else if(message.startsWith("Mentor joined") == true){
+        var want_id = dict[author];
+        if(want_id == undefined){
+            want_id = "local";
+        }
+        document.getElementById(want_id).setAttribute('class','participant');
+
+        now_streaming = author;
+        mentor = author;
+    }
+    else if(message.startsWith("clear screen") == true && author == mentor){
+        images.innerHTML = "";
+    }
+
+    return 0;
+}
 
 addLocalVideo();
 button.addEventListener('click', connectButtonHandler);
